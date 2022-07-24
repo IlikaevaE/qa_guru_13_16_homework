@@ -35,9 +35,11 @@ public class WebDriverProvider implements Supplier<WebDriver> {
         if (Objects.isNull(config.getRemoteUrl())) {
             if (config.getBrowser().equals(Browser.CHROME.toString())) {
                 WebDriverManager.chromedriver().setup();
+                capabilities.setVersion(config.getBrowserVersion());
                 return new ChromeDriver();
             } else if (config.getBrowser().equals(Browser.FIREFOX.toString())) {
                 WebDriverManager.firefoxdriver().setup();
+                capabilities.setVersion(config.getBrowserVersion());
                 return new FirefoxDriver();
             }
         } else {

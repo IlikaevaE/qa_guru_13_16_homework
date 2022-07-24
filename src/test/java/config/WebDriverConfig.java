@@ -15,7 +15,7 @@ public interface WebDriverConfig extends Config {
     String getBaseURL();
 
     @Key("browser.name")
-    @DefaultValue("FIREFOX")
+   @DefaultValue("FIREFOX")
     String getBrowser();
 
     @Key("browser.version")
