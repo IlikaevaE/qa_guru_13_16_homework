@@ -1,22 +1,11 @@
 package tests;
-
-import config.WebDriverProvider;
-
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
 
 
-
-public class BrowserConfigTest {
-    private WebDriver driver;
-
-    @BeforeEach
-    public void startDriver() {
-        driver = new WebDriverProvider().get();
-    }
-
+public class BrowserConfigTest extends TestBaseA{
 
     @Test
+    @Tag("browser_test")
     @DisplayName("Searching for job")
     void searchForVacancy() {
         String title = driver.getTitle();

@@ -52,3 +52,8 @@ test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+task browser_task(type: Test) {
+    useJUnitPlatform{
+        includeTags "browser_test"
+    }
+}
