@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.Objects;
@@ -30,6 +31,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     private WebDriver createWebDriver() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         if (Objects.isNull(config.getRemoteUrl())) {
             if (config.getBrowser().equals(Browser.CHROME.toString())) {
                 WebDriverManager.chromedriver().setup();
@@ -40,8 +42,10 @@ public class WebDriverProvider implements Supplier<WebDriver> {
             }
         } else {
             if (config.getBrowser().equals(Browser.CHROME.toString())) {
+                capabilities.setVersion(config.getBrowserVersion());
                 return new RemoteWebDriver(config.getRemoteUrl(), new ChromeOptions());
             } else if(config.getBrowser().equals(Browser.FIREFOX.toString())) {
+                capabilities.setVersion(config.getBrowserVersion());
                 return new RemoteWebDriver(config.getRemoteUrl(), new FirefoxOptions());
             }
         }
